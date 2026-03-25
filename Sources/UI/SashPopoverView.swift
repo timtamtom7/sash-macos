@@ -255,7 +255,7 @@ struct PresetsTabView: View {
 
             Divider()
 
-            if sashStore.presets.isEmpty {
+            if sashStore.snapPresets.isEmpty {
                 VStack(spacing: 8) {
                     Spacer()
                     Image(systemName: "square.grid.2x2")
@@ -272,7 +272,7 @@ struct PresetsTabView: View {
             } else {
                 ScrollView {
                     LazyVStack(spacing: 8) {
-                        ForEach(sashStore.presets) { preset in
+                        ForEach(sashStore.snapPresets) { preset in
                             presetRow(preset)
                         }
                     }
@@ -282,13 +282,13 @@ struct PresetsTabView: View {
         }
     }
 
-    private func presetRow(_ preset: WindowArrangementPreset) -> some View {
+    private func presetRow(_ preset: SnapPreset) -> some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(preset.name)
                     .font(.system(size: 13, weight: .medium))
                     .foregroundColor(Theme.Colors.textPrimary)
-                Text("\(preset.windows.count) windows")
+                Text("\(preset.positions.count) windows")
                     .font(.system(size: 11))
                     .foregroundColor(Theme.Colors.textSecondary)
             }

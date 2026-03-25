@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */; };
+		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
+		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
 		629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0662E108B5B70889F6E2C870 /* SQLite */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
@@ -26,8 +28,10 @@
 		123C24153F41FF79FC061177 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2266AA91EE33CA02D2F1D4F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
 		47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPositionRow.swift; sourceTree = "<group>"; };
+		71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
 		81243F464E833DD4B8B91211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A35093811666B2317076867 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9172A44A766ABF6251A75763 /* Sash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,11 +112,21 @@
 			children = (
 				FB1FB819533E3C789207BB52 /* App */,
 				7BF05DD4462800C260D8E9C0 /* Models */,
+				DFD78136F3930316230B2061 /* Services */,
 				FE663656D459851C576B41B2 /* UI */,
 				6BA97A608E69ACCED4C1281F /* Utilities */,
 				78D4162F4ACEEEBFD6754A3D /* WindowManager */,
 			);
 			path = Sources;
+			sourceTree = "<group>";
+		};
+		DFD78136F3930316230B2061 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */,
+				2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		FB1FB819533E3C789207BB52 /* App */ = {
@@ -212,10 +226,12 @@
 				4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */,
 				74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */,
 				86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */,
+				3F17783530631343B026722C /* ShortcutsManager.swift in Sources */,
 				71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */,
 				F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */,
 				90B3C26908D89108BD7E207B /* Theme.swift in Sources */,
 				BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */,
+				270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */,
 				95C06E21398D202988034F9A /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -11,6 +11,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         sashStore = SashStore()
 
+        // Initialize SashState for shortcuts
+        SashState.shared.configure(store: sashStore)
+
         setupStatusItem()
         setupPopover()
         setupShortcutMonitor()
@@ -245,7 +248,7 @@ class SashStore: ObservableObject {
     @Published var lastSnapResult: SnapResult = .success(nil)
     @Published var showAccessibilityAlert: Bool = false
     @Published var launchAtLogin: Bool = false
-    @Published var presets: [WindowArrangementPreset] = []
+    @Published var snapPresets: [SnapPreset] = []
     @Published var monitors: [MonitorInfo] = []
 
     private let windowManager = WindowManager.shared
@@ -268,13 +271,13 @@ class SashStore: ObservableObject {
         monitors = MonitorManager.shared.getMonitors()
     }
 
-    func addPreset(_ preset: WindowArrangementPreset) {
-        presets.append(preset)
+    func addPreset(_ preset: SnapPreset) {
+        snapPresets.append(preset)
         savePresets()
     }
 
     func deletePreset(_ id: UUID) {
-        presets.removeAll { $0.id == id }
+        snapPresets.removeAll { $0.id == id }
         savePresets()
     }
 
@@ -284,7 +287,7 @@ class SashStore: ObservableObject {
 
     private func loadPresets() {
         // Simplified - presets managed in-memory
-        presets = []
+        snapPresets = []
     }
 }
 
@@ -295,4 +298,44 @@ enum SnapResult {
     case noFocusedWindow
     case cannotResize
     case accessibilityNotGranted
+}
+
+// MARK: - Window Arrangement Preset
+
+struct SnapPreset: Identifiable, Codable {
+    let id: UUID
+    var name: String
+    var positions: [PresetPosition]
+
+    struct PresetPosition: Codable {
+        var bundleIdentifier: String
+        var snapPosition: String
+    }
+
+    init(id: UUID = UUID(), name: String, positions: [PresetPosition] = []) {
+        self.id = id
+        self.name = name
+        self.positions = positions
+    }
+}
+
+// MARK: - SashState
+
+@MainActor
+final class SashState {
+    static let shared = SashState()
+
+    var store: SashStore?
+    var presets: [SnapPreset] {
+        get { store?.snapPresets ?? [] }
+        set {
+            store?.snapPresets = newValue
+        }
+    }
+
+    private init() {}
+
+    func configure(store: SashStore) {
+        self.store = store
+    }
 }
