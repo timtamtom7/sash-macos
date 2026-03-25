@@ -10,18 +10,24 @@
 		1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */; };
 		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
 		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
+		4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
 		74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */; };
+		80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */; };
 		86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */; };
 		90B3C26908D89108BD7E207B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35093811666B2317076867 /* Theme.swift */; };
 		95C06E21398D202988034F9A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266AA91EE33CA02D2F1D4F6 /* main.swift */; };
+		A4286830FF275D76ED7A00AF /* SashExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C85CDF14F25A44287E1A4B /* SashExport.swift */; };
 		A850A5C1749DFF077685044F /* SashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */; };
+		ADE744F1094E2B1D01F275FB /* AccessibilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */; };
 		BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */; };
 		C505E59B373F99119AD74840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123C24153F41FF79FC061177 /* Assets.xcassets */; };
+		D270A7228D95B5C419DB7A28 /* DisplayProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219194163512B54E92DC696 /* DisplayProfile.swift */; };
 		D76731FEDBD047E7699AA59C /* SashWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 219BAA694130F62B00A9010D /* SashWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
+		FB769B6F03C758BEEFA88ADC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7951947A3CCFC26416CBA81 /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +62,10 @@
 		219BAA694130F62B00A9010D /* SashWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SashWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2266AA91EE33CA02D2F1D4F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
+		3219194163512B54E92DC696 /* DisplayProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayProfile.swift; sourceTree = "<group>"; };
 		47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLayout.swift; sourceTree = "<group>"; };
+		52C85CDF14F25A44287E1A4B /* SashExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashExport.swift; sourceTree = "<group>"; };
 		567A9749C573D0F2E802E180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPositionRow.swift; sourceTree = "<group>"; };
 		71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
@@ -67,8 +76,11 @@
 		986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashWidgets.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
+		B7951947A3CCFC26416CBA81 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
 		D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPosition.swift; sourceTree = "<group>"; };
+		EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
+		F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -162,8 +174,14 @@
 		FB1FB819533E3C789207BB52 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */,
 				1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */,
+				3219194163512B54E92DC696 /* DisplayProfile.swift */,
+				EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */,
 				2266AA91EE33CA02D2F1D4F6 /* main.swift */,
+				52C85CDF14F25A44287E1A4B /* SashExport.swift */,
+				48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */,
+				B7951947A3CCFC26416CBA81 /* WindowManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -276,15 +294,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADE744F1094E2B1D01F275FB /* AccessibilityExtensions.swift in Sources */,
 				1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */,
+				D270A7228D95B5C419DB7A28 /* DisplayProfile.swift in Sources */,
+				80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */,
 				DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */,
+				A4286830FF275D76ED7A00AF /* SashExport.swift in Sources */,
 				4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */,
+				4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */,
 				74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */,
 				86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */,
 				3F17783530631343B026722C /* ShortcutsManager.swift in Sources */,
 				71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */,
 				F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */,
 				90B3C26908D89108BD7E207B /* Theme.swift in Sources */,
+				FB769B6F03C758BEEFA88ADC /* WindowManager.swift in Sources */,
 				BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */,
 				270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */,
 				95C06E21398D202988034F9A /* main.swift in Sources */,
