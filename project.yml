@@ -39,3 +39,41 @@ targets:
         product: SQLite
     entitlements:
       path: Resources/Sash.entitlements
+    dependencies:
+      - target: SashWidgets
+        embed: true
+
+  SashWidgets:
+    type: app-extension
+    platform: macOS
+    sources:
+      - path: SashWidgets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.sash.app.widgets
+        PRODUCT_NAME: SashWidgets
+        LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks"
+        SKIP_INSTALL: YES
+        SWIFT_VERSION: "5.9"
+        MACOSX_DEPLOYMENT_TARGET: "14.0"
+        CODE_SIGN_STYLE: Automatic
+        ENABLE_HARDENED_RUNTIME: YES
+    info:
+      path: SashWidgets/Info.plist
+      properties:
+        CFBundleName: SashWidgets
+        CFBundleDisplayName: Sash Widgets
+        CFBundleIdentifier: com.sash.app.widgets
+        CFBundleVersion: "1"
+        CFBundleShortVersionString: "1.0.0"
+        CFBundlePackageType: XPC!
+        CFBundleExecutable: SashWidgets
+        LSMinimumSystemVersion: "14.0"
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: SashWidgets/SashWidgets.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.application-groups:
+          - group.com.sash.shared

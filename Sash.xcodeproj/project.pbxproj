@@ -11,25 +11,53 @@
 		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
 		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
-		629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0662E108B5B70889F6E2C870 /* SQLite */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
 		74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */; };
 		86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */; };
 		90B3C26908D89108BD7E207B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35093811666B2317076867 /* Theme.swift */; };
 		95C06E21398D202988034F9A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266AA91EE33CA02D2F1D4F6 /* main.swift */; };
+		A850A5C1749DFF077685044F /* SashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */; };
 		BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */; };
 		C505E59B373F99119AD74840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123C24153F41FF79FC061177 /* Assets.xcassets */; };
+		D76731FEDBD047E7699AA59C /* SashWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 219BAA694130F62B00A9010D /* SashWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5328A5277E3426B45794E0AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 491428943C765DAE470F78E0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC8B9AE7584CA0A6AE14AC39;
+			remoteInfo = SashWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DB6A0E64B9344CA906A3DB08 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D76731FEDBD047E7699AA59C /* SashWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutMonitor.swift; sourceTree = "<group>"; };
 		123C24153F41FF79FC061177 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1AC50F776D1A1A775677C3D7 /* SashWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SashWidgets.entitlements; sourceTree = "<group>"; };
 		1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		219BAA694130F62B00A9010D /* SashWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SashWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2266AA91EE33CA02D2F1D4F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
 		47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
+		567A9749C573D0F2E802E180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPositionRow.swift; sourceTree = "<group>"; };
 		71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
 		81243F464E833DD4B8B91211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -37,27 +65,18 @@
 		9172A44A766ABF6251A75763 /* Sash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiMonitor.swift; sourceTree = "<group>"; };
 		986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashWidgets.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
 		D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPosition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		2ACE813D1A94EABA9E584103 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		225BFA4C10A08120046AE71A = {
 			isa = PBXGroup;
 			children = (
 				47E52B955EAEE115750485A6 /* Resources */,
+				9AB63B29EA84B4AD3DE0E7FC /* SashWidgets */,
 				88178DE9A6C7E3405E792CE0 /* Sources */,
 				4E038C558C841852F2D84632 /* Products */,
 			);
@@ -77,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				9172A44A766ABF6251A75763 /* Sash.app */,
+				219BAA694130F62B00A9010D /* SashWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,6 +140,16 @@
 			path = Sources;
 			sourceTree = "<group>";
 		};
+		9AB63B29EA84B4AD3DE0E7FC /* SashWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				567A9749C573D0F2E802E180 /* Info.plist */,
+				1AC50F776D1A1A775677C3D7 /* SashWidgets.entitlements */,
+				AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */,
+			);
+			path = SashWidgets;
+			sourceTree = "<group>";
+		};
 		DFD78136F3930316230B2061 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,19 +187,32 @@
 			buildPhases = (
 				BE4EBC44A263E2B94205807B /* Sources */,
 				9DDE337122C2C2FBC5D70162 /* Resources */,
-				2ACE813D1A94EABA9E584103 /* Frameworks */,
+				DB6A0E64B9344CA906A3DB08 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				956A9879C414C8F5FDE8794B /* PBXTargetDependency */,
+			);
+			name = Sash;
+			productName = Sash;
+			productReference = 9172A44A766ABF6251A75763 /* Sash.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BC8B9AE7584CA0A6AE14AC39 /* SashWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9BC918FDB2881A8BF9E08168 /* Build configuration list for PBXNativeTarget "SashWidgets" */;
+			buildPhases = (
+				6AFF17D1E7F69237CCFCA2A7 /* Sources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = Sash;
-			packageProductDependencies = (
-				0662E108B5B70889F6E2C870 /* SQLite */,
-			);
-			productName = Sash;
-			productReference = 9172A44A766ABF6251A75763 /* Sash.app */;
-			productType = "com.apple.product-type.application";
+			name = SashWidgets;
+			productName = SashWidgets;
+			productReference = 219BAA694130F62B00A9010D /* SashWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -181,6 +224,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					326461658020D6409E038E01 = {
+						ProvisioningStyle = Automatic;
+					};
+					BC8B9AE7584CA0A6AE14AC39 = {
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -201,6 +247,7 @@
 			projectRoot = "";
 			targets = (
 				326461658020D6409E038E01 /* Sash */,
+				BC8B9AE7584CA0A6AE14AC39 /* SashWidgets */,
 			);
 		};
 /* End PBXProject section */
@@ -217,6 +264,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		6AFF17D1E7F69237CCFCA2A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A850A5C1749DFF077685044F /* SashWidgets.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		BE4EBC44A263E2B94205807B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -238,7 +293,51 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		956A9879C414C8F5FDE8794B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC8B9AE7584CA0A6AE14AC39 /* SashWidgets */;
+			targetProxy = 5328A5277E3426B45794E0AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		050213CEB5EC298866C71C2E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SashWidgets/SashWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SashWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sash.app.widgets;
+				PRODUCT_NAME = SashWidgets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		380BEAED0568E7CD8825BC6A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SashWidgets/SashWidgets.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = SashWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sash.app.widgets;
+				PRODUCT_NAME = SashWidgets;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
 		5A5366F1411DB37EB61B33BF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -413,6 +512,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
 		};
+		9BC918FDB2881A8BF9E08168 /* Build configuration list for PBXNativeTarget "SashWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				380BEAED0568E7CD8825BC6A /* Debug */,
+				050213CEB5EC298866C71C2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
@@ -425,14 +533,6 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0662E108B5B70889F6E2C870 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED1ABB65B0B0D01FB465B511 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 491428943C765DAE470F78E0 /* Project object */;
 }
