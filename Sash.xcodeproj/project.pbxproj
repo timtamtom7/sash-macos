@@ -17,6 +17,7 @@
 		95C06E21398D202988034F9A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2266AA91EE33CA02D2F1D4F6 /* main.swift */; };
 		BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */; };
 		C505E59B373F99119AD74840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123C24153F41FF79FC061177 /* Assets.xcassets */; };
+		DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		81243F464E833DD4B8B91211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A35093811666B2317076867 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9172A44A766ABF6251A75763 /* Sash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiMonitor.swift; sourceTree = "<group>"; };
 		986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 		7BF05DD4462800C260D8E9C0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */,
 				D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */,
 			);
 			path = Models;
@@ -205,6 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */,
+				DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */,
 				4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */,
 				74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */,
 				86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */,

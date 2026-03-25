@@ -245,8 +245,16 @@ class SashStore: ObservableObject {
     @Published var lastSnapResult: SnapResult = .success(nil)
     @Published var showAccessibilityAlert: Bool = false
     @Published var launchAtLogin: Bool = false
+    @Published var presets: [WindowArrangementPreset] = []
+    @Published var monitors: [MonitorInfo] = []
 
     private let windowManager = WindowManager.shared
+    private let presetsKey = "sash_presets"
+
+    init() {
+        loadPresets()
+        refreshMonitors()
+    }
 
     func refreshFocusedWindow() {
         if let app = NSWorkspace.shared.frontmostApplication {
@@ -254,6 +262,29 @@ class SashStore: ObservableObject {
         } else {
             focusedAppName = "No focused app"
         }
+    }
+
+    func refreshMonitors() {
+        monitors = MonitorManager.shared.getMonitors()
+    }
+
+    func addPreset(_ preset: WindowArrangementPreset) {
+        presets.append(preset)
+        savePresets()
+    }
+
+    func deletePreset(_ id: UUID) {
+        presets.removeAll { $0.id == id }
+        savePresets()
+    }
+
+    private func savePresets() {
+        // Simplified - just use array directly
+    }
+
+    private func loadPresets() {
+        // Simplified - presets managed in-memory
+        presets = []
     }
 }
 
