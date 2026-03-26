@@ -7,16 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE260C3BF3F335812BE15BD /* SashVisionOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD03024ADE7558AE095F7C1 /* SashVisionOS.swift */; };
+		16024BEB809AF8D887646F0C /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C8FB11C2AF158DDF4E3F3430 /* StoreKit.storekit */; };
 		1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */; };
 		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
+		33AB15BDEB2A2819B924DAA7 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FEF45041B7E4023D388668 /* SubscriptionManager.swift */; };
 		33AE513C2692BFE1E9D908AA /* WindowHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23888292F2C131A6E1D48C2 /* WindowHistoryManager.swift */; };
+		34B02D617BE3C06CDEC745EE /* PrivacyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8990D8DB5949BCC7F513CE /* PrivacyManager.swift */; };
 		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
 		4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
 		4ED7C61AA5223574ACB3134E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007A83B3AFB85EF8892DF5D /* APIService.swift */; };
-		629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0662E108B5B70889F6E2C870 /* SQLite */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
 		74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */; };
+		75E9BC33918C0004D3F08509 /* AutomationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0359A90CC203CAF0BE08C /* AutomationManager.swift */; };
 		80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */; };
 		86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */; };
 		90B3C26908D89108BD7E207B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35093811666B2317076867 /* Theme.swift */; };
@@ -29,8 +33,10 @@
 		BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */; };
 		C505E59B373F99119AD74840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123C24153F41FF79FC061177 /* Assets.xcassets */; };
 		D270A7228D95B5C419DB7A28 /* DisplayProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219194163512B54E92DC696 /* DisplayProfile.swift */; };
+		D2DB37D27E6FE9D9C8833DD9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57852786C129808480A60A60 /* StoreKit.framework */; };
 		D76731FEDBD047E7699AA59C /* SashWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 219BAA694130F62B00A9010D /* SashWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */; };
+		DB1EFE7E2A9C7F93A05CF8F9 /* SyncWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA19746BC919327DBBF828 /* SyncWidgets.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
 		F5A2ED048C8CC5952E342C32 /* EnterpriseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA380F687A49620B6F47F4 /* EnterpriseService.swift */; };
 /* End PBXBuildFile section */
@@ -61,9 +67,11 @@
 
 /* Begin PBXFileReference section */
 		0007A83B3AFB85EF8892DF5D /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		0C8990D8DB5949BCC7F513CE /* PrivacyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyManager.swift; sourceTree = "<group>"; };
 		1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutMonitor.swift; sourceTree = "<group>"; };
 		123C24153F41FF79FC061177 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AC50F776D1A1A775677C3D7 /* SashWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SashWidgets.entitlements; sourceTree = "<group>"; };
+		1BFA19746BC919327DBBF828 /* SyncWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncWidgets.swift; sourceTree = "<group>"; };
 		1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		219BAA694130F62B00A9010D /* SashWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SashWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		2266AA91EE33CA02D2F1D4F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -73,17 +81,22 @@
 		48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLayout.swift; sourceTree = "<group>"; };
 		52C85CDF14F25A44287E1A4B /* SashExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashExport.swift; sourceTree = "<group>"; };
 		567A9749C573D0F2E802E180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		57852786C129808480A60A60 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPositionRow.swift; sourceTree = "<group>"; };
 		6AEA380F687A49620B6F47F4 /* EnterpriseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseService.swift; sourceTree = "<group>"; };
+		6DD0359A90CC203CAF0BE08C /* AutomationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationManager.swift; sourceTree = "<group>"; };
 		71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
+		79FEF45041B7E4023D388668 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		81243F464E833DD4B8B91211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8A35093811666B2317076867 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9172A44A766ABF6251A75763 /* Sash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiMonitor.swift; sourceTree = "<group>"; };
 		986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		9DD03024ADE7558AE095F7C1 /* SashVisionOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashVisionOS.swift; sourceTree = "<group>"; };
 		AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashWidgets.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
+		C8FB11C2AF158DDF4E3F3430 /* StoreKit.storekit */ = {isa = PBXFileReference; path = StoreKit.storekit; sourceTree = "<group>"; };
 		D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPosition.swift; sourceTree = "<group>"; };
 		E07EEA9F5612C10EE751DD72 /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
 		E61B258C12CF308E75BD0BB1 /* iOSCompanionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCompanionService.swift; sourceTree = "<group>"; };
@@ -97,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */,
+				D2DB37D27E6FE9D9C8833DD9 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,8 +123,17 @@
 				47E52B955EAEE115750485A6 /* Resources */,
 				9AB63B29EA84B4AD3DE0E7FC /* SashWidgets */,
 				88178DE9A6C7E3405E792CE0 /* Sources */,
+				2B800B5E9E76094BE2639A78 /* Frameworks */,
 				4E038C558C841852F2D84632 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		2B800B5E9E76094BE2639A78 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				57852786C129808480A60A60 /* StoreKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		47E52B955EAEE115750485A6 /* Resources */ = {
@@ -120,6 +142,7 @@
 				123C24153F41FF79FC061177 /* Assets.xcassets */,
 				81243F464E833DD4B8B91211 /* Info.plist */,
 				C145BDC88328E2784FD7B024 /* Sash.entitlements */,
+				C8FB11C2AF158DDF4E3F3430 /* StoreKit.storekit */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -167,6 +190,7 @@
 				DFD78136F3930316230B2061 /* Services */,
 				FE663656D459851C576B41B2 /* UI */,
 				6BA97A608E69ACCED4C1281F /* Utilities */,
+				A8ED53E47A47F62FFE95E9D4 /* VisionOS */,
 				78D4162F4ACEEEBFD6754A3D /* WindowManager */,
 			);
 			path = Sources;
@@ -178,19 +202,31 @@
 				567A9749C573D0F2E802E180 /* Info.plist */,
 				1AC50F776D1A1A775677C3D7 /* SashWidgets.entitlements */,
 				AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */,
+				1BFA19746BC919327DBBF828 /* SyncWidgets.swift */,
 			);
 			path = SashWidgets;
+			sourceTree = "<group>";
+		};
+		A8ED53E47A47F62FFE95E9D4 /* VisionOS */ = {
+			isa = PBXGroup;
+			children = (
+				9DD03024ADE7558AE095F7C1 /* SashVisionOS.swift */,
+			);
+			path = VisionOS;
 			sourceTree = "<group>";
 		};
 		DFD78136F3930316230B2061 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				0007A83B3AFB85EF8892DF5D /* APIService.swift */,
+				6DD0359A90CC203CAF0BE08C /* AutomationManager.swift */,
 				E07EEA9F5612C10EE751DD72 /* CollaborationService.swift */,
 				6AEA380F687A49620B6F47F4 /* EnterpriseService.swift */,
 				71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */,
 				E61B258C12CF308E75BD0BB1 /* iOSCompanionService.swift */,
+				0C8990D8DB5949BCC7F513CE /* PrivacyManager.swift */,
 				2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */,
+				79FEF45041B7E4023D388668 /* SubscriptionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -238,9 +274,6 @@
 				956A9879C414C8F5FDE8794B /* PBXTargetDependency */,
 			);
 			name = Sash;
-			packageProductDependencies = (
-				0662E108B5B70889F6E2C870 /* SQLite */,
-			);
 			productName = Sash;
 			productReference = 9172A44A766ABF6251A75763 /* Sash.app */;
 			productType = "com.apple.product-type.application";
@@ -286,9 +319,6 @@
 				en,
 			);
 			mainGroup = 225BFA4C10A08120046AE71A;
-			packageReferences = (
-				ED1ABB65B0B0D01FB465B511 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
-			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -304,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C505E59B373F99119AD74840 /* Assets.xcassets in Resources */,
+				16024BEB809AF8D887646F0C /* StoreKit.storekit in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +346,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A850A5C1749DFF077685044F /* SashWidgets.swift in Sources */,
+				DB1EFE7E2A9C7F93A05CF8F9 /* SyncWidgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,19 +357,23 @@
 				4ED7C61AA5223574ACB3134E /* APIService.swift in Sources */,
 				ADE744F1094E2B1D01F275FB /* AccessibilityExtensions.swift in Sources */,
 				1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */,
+				75E9BC33918C0004D3F08509 /* AutomationManager.swift in Sources */,
 				9FD25E16846DC84B688284F0 /* CollaborationService.swift in Sources */,
 				D270A7228D95B5C419DB7A28 /* DisplayProfile.swift in Sources */,
 				F5A2ED048C8CC5952E342C32 /* EnterpriseService.swift in Sources */,
 				80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */,
 				DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */,
+				34B02D617BE3C06CDEC745EE /* PrivacyManager.swift in Sources */,
 				A4286830FF275D76ED7A00AF /* SashExport.swift in Sources */,
 				4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */,
+				0AE260C3BF3F335812BE15BD /* SashVisionOS.swift in Sources */,
 				4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */,
 				74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */,
 				86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */,
 				3F17783530631343B026722C /* ShortcutsManager.swift in Sources */,
 				71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */,
 				F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */,
+				33AB15BDEB2A2819B924DAA7 /* SubscriptionManager.swift in Sources */,
 				90B3C26908D89108BD7E207B /* Theme.swift in Sources */,
 				33AE513C2692BFE1E9D908AA /* WindowHistoryManager.swift in Sources */,
 				BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */,
@@ -362,6 +398,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SashWidgets/SashWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -380,6 +417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = SashWidgets/SashWidgets.entitlements;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -427,6 +465,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -464,6 +503,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sash.Sash;
 				SDKROOT = macosx;
+				STOREKit_FILE = Resources/StoreKit.storekit;
 			};
 			name = Release;
 		};
@@ -477,6 +517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.sash.Sash;
 				SDKROOT = macosx;
+				STOREKit_FILE = Resources/StoreKit.storekit;
 			};
 			name = Debug;
 		};
@@ -513,6 +554,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
@@ -578,25 +620,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		ED1ABB65B0B0D01FB465B511 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		0662E108B5B70889F6E2C870 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = ED1ABB65B0B0D01FB465B511 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 491428943C765DAE470F78E0 /* Project object */;
 }

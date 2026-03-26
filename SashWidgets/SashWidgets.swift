@@ -238,6 +238,9 @@ struct SashWidgetBundle: WidgetBundle {
         SashCurrentLayoutWidget()
         SashLayoutSwitcherWidget()
         SashQuickSnapWidget()
+        SashSyncStatusWidget()
+        SashSyncActivityWidget()
+        SashConflictWidget()
     }
 }
 

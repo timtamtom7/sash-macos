@@ -14,12 +14,8 @@ settings:
     SWIFT_VERSION: "5.9"
     MACOSX_DEPLOYMENT_TARGET: "13.0"
     CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: "-"
     ENABLE_HARDENED_RUNTIME: YES
-
-packages:
-  SQLite.swift:
-    url: https://github.com/stephencelis/SQLite.swift.git
-    from: "0.15.0"
 
 targets:
   Sash:
@@ -34,11 +30,11 @@ targets:
         CODE_SIGN_ENTITLEMENTS: Resources/Sash.entitlements
         LD_RUNPATH_SEARCH_PATHS: "$(inherited) @executable_path/../Frameworks"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        STOREKit_FILE: "Resources/StoreKit.storekit"
     dependencies:
-      - package: SQLite.swift
-        product: SQLite
       - target: SashWidgets
         embed: true
+      - sdk: StoreKit.framework
     entitlements:
       path: Resources/Sash.entitlements
 
@@ -56,6 +52,7 @@ targets:
         SWIFT_VERSION: "5.9"
         MACOSX_DEPLOYMENT_TARGET: "14.0"
         CODE_SIGN_STYLE: Automatic
+        CODE_SIGN_IDENTITY: "-"
         ENABLE_HARDENED_RUNTIME: YES
     info:
       path: SashWidgets/Info.plist
@@ -72,7 +69,3 @@ targets:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
       path: SashWidgets/SashWidgets.entitlements
-      properties:
-        com.apple.security.app-sandbox: true
-        com.apple.security.application-groups:
-          - group.com.sash.shared

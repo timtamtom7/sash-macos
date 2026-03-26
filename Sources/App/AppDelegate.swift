@@ -14,6 +14,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Initialize SashState for shortcuts
         SashState.shared.configure(store: sashStore)
 
+        _ = CollaborationService.shared
+        _ = EnterpriseService.shared
+        _ = iOSCompanionService.shared
+        SashAPIService.shared.start()
+
         setupStatusItem()
         setupPopover()
         setupShortcutMonitor()
@@ -21,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func applicationWillTerminate(_ notification: Notification) {
+        SashAPIService.shared.stop()
         if let monitor = eventMonitor {
             NSEvent.removeMonitor(monitor)
         }

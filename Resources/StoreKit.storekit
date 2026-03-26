@@ -1,0 +1,126 @@
+{
+  "identifier" : "com.sash.subscription",
+  "version" : 1,
+  "products" : [
+    {
+      "family" : "pro",
+      "displayName" : "Sash Pro",
+      "localizations" : [
+        {
+          "description" : "Unlock unlimited sync with ML-powered conflict resolution",
+          "languageCode" : "en",
+          "displayName" : "Sash Pro"
+        }
+      ],
+      "price" : 3.99,
+      "priceFormatted" : "$3.99",
+      "productIdentifier" : "com.sash.pro.monthly",
+      "type" : "subscription",
+      "subscriptionGroup" : "com.sash.pro.group",
+      "subscriptionPeriod" : "P1M"
+    },
+    {
+      "family" : "pro",
+      "displayName" : "Sash Pro (Yearly)",
+      "localizations" : [
+        {
+          "description" : "Unlock unlimited sync with ML-powered conflict resolution",
+          "languageCode" : "en",
+          "displayName" : "Sash Pro Yearly"
+        }
+      ],
+      "price" : 29.99,
+      "priceFormatted" : "$29.99",
+      "productIdentifier" : "com.sash.pro.yearly",
+      "type" : "subscription",
+      "subscriptionGroup" : "com.sash.pro.group",
+      "subscriptionPeriod" : "P1Y"
+    },
+    {
+      "family" : "team",
+      "displayName" : "Sash Team",
+      "localizations" : [
+        {
+          "description" : "Team sync with real-time collaboration",
+          "languageCode" : "en",
+          "displayName" : "Sash Team"
+        }
+      ],
+      "price" : 7.99,
+      "priceFormatted" : "$7.99",
+      "productIdentifier" : "com.sash.team.monthly",
+      "type" : "subscription",
+      "subscriptionGroup" : "com.sash.team.group",
+      "subscriptionPeriod" : "P1M"
+    },
+    {
+      "family" : "team",
+      "displayName" : "Sash Team (Yearly)",
+      "localizations" : [
+        {
+          "description" : "Team sync with real-time collaboration",
+          "languageCode" : "en",
+          "displayName" : "Sash Team Yearly"
+        }
+      ],
+      "price" : 59.99,
+      "priceFormatted" : "$59.99",
+      "productIdentifier" : "com.sash.team.yearly",
+      "type" : "subscription",
+      "subscriptionGroup" : "com.sash.team.group",
+      "subscriptionPeriod" : "P1Y"
+    },
+    {
+      "family" : "enterprise",
+      "displayName" : "Sash Enterprise",
+      "localizations" : [
+        {
+          "description" : "Enterprise sync with SSO, MDM, and audit logs",
+          "languageCode" : "en",
+          "displayName" : "Sash Enterprise"
+        }
+      ],
+      "price" : 0.0,
+      "priceFormatted" : "Custom",
+      "productIdentifier" : "com.sash.enterprise.monthly",
+      "type" : "subscription",
+      "subscriptionGroup" : "com.sash.enterprise.group",
+      "subscriptionPeriod" : "P1M"
+    }
+  ],
+  "subscriptionGroups" : [
+    {
+      "id" : "com.sash.pro.group",
+      "localizations" : [
+        {
+          "name" : "Sash Pro",
+          "languageCode" : "en"
+        }
+      ],
+      "options" : {
+        "basePlan" : "com.sash.pro.yearly"
+      }
+    },
+    {
+      "id" : "com.sash.team.group",
+      "localizations" : [
+        {
+          "name" : "Sash Team",
+          "languageCode" : "en"
+        }
+      ],
+      "options" : {
+        "basePlan" : "com.sash.team.yearly"
+      }
+    },
+    {
+      "id" : "com.sash.enterprise.group",
+      "localizations" : [
+        {
+          "name" : "Sash Enterprise",
+          "languageCode" : "en"
+        }
+      ]
+    }
+  ]
+}
