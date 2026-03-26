@@ -9,9 +9,11 @@
 /* Begin PBXBuildFile section */
 		1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */; };
 		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
+		33AE513C2692BFE1E9D908AA /* WindowHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23888292F2C131A6E1D48C2 /* WindowHistoryManager.swift */; };
 		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
 		4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
+		629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 0662E108B5B70889F6E2C870 /* SQLite */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
 		74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */; };
 		80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */; };
@@ -27,7 +29,6 @@
 		D76731FEDBD047E7699AA59C /* SashWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 219BAA694130F62B00A9010D /* SashWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		DA9AF0568B02326914C97C80 /* MultiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
-		FB769B6F03C758BEEFA88ADC /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7951947A3CCFC26416CBA81 /* WindowManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,12 +77,23 @@
 		986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
 		AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashWidgets.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
-		B7951947A3CCFC26416CBA81 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
 		D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPosition.swift; sourceTree = "<group>"; };
 		EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
 		F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityExtensions.swift; sourceTree = "<group>"; };
+		F23888292F2C131A6E1D48C2 /* WindowHistoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowHistoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2ACE813D1A94EABA9E584103 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				629EAC8EF0F01F85D95F50E7 /* SQLite in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		225BFA4C10A08120046AE71A = {
@@ -181,7 +193,7 @@
 				2266AA91EE33CA02D2F1D4F6 /* main.swift */,
 				52C85CDF14F25A44287E1A4B /* SashExport.swift */,
 				48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */,
-				B7951947A3CCFC26416CBA81 /* WindowManager.swift */,
+				F23888292F2C131A6E1D48C2 /* WindowHistoryManager.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -205,6 +217,7 @@
 			buildPhases = (
 				BE4EBC44A263E2B94205807B /* Sources */,
 				9DDE337122C2C2FBC5D70162 /* Resources */,
+				2ACE813D1A94EABA9E584103 /* Frameworks */,
 				DB6A0E64B9344CA906A3DB08 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -213,6 +226,9 @@
 				956A9879C414C8F5FDE8794B /* PBXTargetDependency */,
 			);
 			name = Sash;
+			packageProductDependencies = (
+				0662E108B5B70889F6E2C870 /* SQLite */,
+			);
 			productName = Sash;
 			productReference = 9172A44A766ABF6251A75763 /* Sash.app */;
 			productType = "com.apple.product-type.application";
@@ -308,7 +324,7 @@
 				71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */,
 				F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */,
 				90B3C26908D89108BD7E207B /* Theme.swift in Sources */,
-				FB769B6F03C758BEEFA88ADC /* WindowManager.swift in Sources */,
+				33AE513C2692BFE1E9D908AA /* WindowHistoryManager.swift in Sources */,
 				BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */,
 				270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */,
 				95C06E21398D202988034F9A /* main.swift in Sources */,
@@ -336,7 +352,7 @@
 				INFOPLIST_FILE = SashWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sash.app.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sash.Sash.SashWidgets;
 				PRODUCT_NAME = SashWidgets;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -354,7 +370,7 @@
 				INFOPLIST_FILE = SashWidgets/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sash.app.widgets;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sash.Sash.SashWidgets;
 				PRODUCT_NAME = SashWidgets;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
@@ -557,6 +573,14 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0662E108B5B70889F6E2C870 /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ED1ABB65B0B0D01FB465B511 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
+			productName = SQLite;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 491428943C765DAE470F78E0 /* Project object */;
 }
