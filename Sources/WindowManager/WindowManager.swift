@@ -34,6 +34,7 @@ class WindowManager {
             return .noFocusedWindow
         }
 
+        // swiftlint:disable:next force_cast
         let window = windowElement as! AXUIElement
         guard let screen = NSScreen.main else { return .noFocusedWindow }
 
@@ -140,6 +141,7 @@ class WindowManager {
             return nil
         }
 
+        // swiftlint:disable:next force_cast
         let window = windowElement as! AXUIElement
 
         var title: CFTypeRef?

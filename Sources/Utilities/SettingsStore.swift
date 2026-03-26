@@ -16,7 +16,9 @@ class SettingsStore {
     }
 
     private var fileURL: URL {
-        let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        guard let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first else {
+            return URL(fileURLWithPath: "/tmp/Sash/settings.json")
+        }
         let appDir = appSupport.appendingPathComponent("Sash", isDirectory: true)
         try? FileManager.default.createDirectory(at: appDir, withIntermediateDirectories: true)
         return appDir.appendingPathComponent("settings.json")
