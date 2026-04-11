@@ -1,5 +1,6 @@
 import Foundation
 import LocalAuthentication
+import CryptoKit
 
 // MARK: - Privacy Manager (R19)
 
@@ -40,15 +41,28 @@ final class PrivacyManager: ObservableObject {
 
     /// Encrypts data using AES-256-GCM (zero-knowledge)
     func encrypt(data: Data, key: Data) -> Data? {
-        // Simplified stub - in production use CryptoKit
-        // let sealedBox = try? AES.GCM.seal(data, using: SymmetricKey(data: key))
-        return data // Stub: actual implementation uses CryptoKit
+        guard key.count == 32 else { return nil }
+        do {
+            let symmetricKey = SymmetricKey(data: key)
+            let sealedBox = try AES.GCM.seal(data, using: symmetricKey)
+            return sealedBox.combined
+        } catch {
+            print("Encryption failed: \(error)")
+            return nil
+        }
     }
 
     /// Decrypts data using AES-256-GCM
     func decrypt(data: Data, key: Data) -> Data? {
-        // Simplified stub - in production use CryptoKit
-        return data // Stub: actual implementation uses CryptoKit
+        guard key.count == 32 else { return nil }
+        do {
+            let symmetricKey = SymmetricKey(data: key)
+            let sealedBox = try AES.GCM.SealedBox(combined: data)
+            return try AES.GCM.open(sealedBox, using: symmetricKey)
+        } catch {
+            print("Decryption failed: \(error)")
+            return nil
+        }
     }
 
     // MARK: - Privacy Settings

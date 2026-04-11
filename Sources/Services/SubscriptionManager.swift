@@ -231,8 +231,8 @@ final class SubscriptionManager: ObservableObject {
     // MARK: - Helpers
 
     private func tierFromProductId(_ productId: String) -> SubscriptionTier? {
-        if productId.contains("pro") { return .pro }
-        if productId.contains("team") { return .team }
+        if productId.hasSuffix("pro.monthly") || productId.hasSuffix("pro.yearly") { return .pro }
+        if productId.hasSuffix("team.monthly") || productId.hasSuffix("team.yearly") { return .team }
         if productId.contains("enterprise") { return .enterprise }
         return nil
     }

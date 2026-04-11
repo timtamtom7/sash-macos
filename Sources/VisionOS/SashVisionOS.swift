@@ -1,5 +1,6 @@
 import SwiftUI
 import WidgetKit
+import simd
 
 // MARK: - Sash Vision OS App (R20)
 

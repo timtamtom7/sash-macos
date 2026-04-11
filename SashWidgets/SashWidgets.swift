@@ -1,7 +1,19 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Layout Summary
+private enum WidgetSpacing {
+    static let xs: CGFloat = 4
+    static let sm: CGFloat = 6
+    static let md: CGFloat = 8
+    static let lg: CGFloat = 12
+    static let xl: CGFloat = 16
+}
+
+private enum WidgetRadius {
+    static let small: CGFloat = 6
+    static let medium: CGFloat = 8
+    static let large: CGFloat = 12
+}
 
 struct LayoutSummary: Codable, Identifiable {
     let id: String
@@ -10,8 +22,6 @@ struct LayoutSummary: Codable, Identifiable {
     let windowCount: Int
 }
 
-// MARK: - Widget Entry
-
 struct SashWidgetEntry: TimelineEntry {
     let date: Date
     let currentLayout: LayoutSummary?
@@ -19,18 +29,16 @@ struct SashWidgetEntry: TimelineEntry {
     let recentLayouts: [String]
 }
 
-// MARK: - Provider
-
 struct SashProvider: TimelineProvider {
     func placeholder(in context: Context) -> SashWidgetEntry {
         SashWidgetEntry(
             date: Date(),
-            currentLayout: LayoutSummary(id: "1", name: "Code + Docs", icon: "📐", windowCount: 3),
+            currentLayout: LayoutSummary(id: "1", name: "Code + Docs", icon: "rectangle.split.2x1", windowCount: 3),
             layouts: [
-                LayoutSummary(id: "1", name: "Code + Docs", icon: "📐", windowCount: 3),
-                LayoutSummary(id: "2", name: "Email", icon: "📧", windowCount: 2),
-                LayoutSummary(id: "3", name: "Music", icon: "🎵", windowCount: 1),
-                LayoutSummary(id: "4", name: "Presentation", icon: "📊", windowCount: 4)
+                LayoutSummary(id: "1", name: "Code + Docs", icon: "rectangle.split.2x1", windowCount: 3),
+                LayoutSummary(id: "2", name: "Email", icon: "envelope", windowCount: 2),
+                LayoutSummary(id: "3", name: "Music", icon: "music.note", windowCount: 1),
+                LayoutSummary(id: "4", name: "Presentation", icon: "chart.bar", windowCount: 4)
             ],
             recentLayouts: ["1", "2", "3", "4"]
         )
@@ -70,63 +78,68 @@ struct SashProvider: TimelineProvider {
     }
 }
 
-// MARK: - Current Layout View
-
 struct CurrentLayoutView: View {
     var entry: SashWidgetEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: WidgetSpacing.sm) {
             HStack {
                 Image(systemName: "rectangle.split.2x1")
-                    .foregroundColor(.accentColor)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.tint)
                 Text("Sash")
                     .font(.system(size: 12, weight: .semibold))
+                Spacer()
             }
+            .foregroundStyle(.primary)
 
             Spacer()
 
             if let layout = entry.currentLayout {
                 Text("Current:")
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
                 HStack {
-                    Text(layout.icon)
-                        .font(.system(size: 16))
+                    Image(systemName: layout.icon)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.tint)
                     Text(layout.name)
                         .font(.system(size: 12, weight: .medium))
+                        .lineLimit(1)
                 }
                 Text("\(layout.windowCount) windows")
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             } else {
                 Text("No active layout")
                     .font(.system(size: 12))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
         .widgetURL(URL(string: "sash://open")!)
     }
 }
-
-// MARK: - Layout Switcher View
 
 struct LayoutSwitcherView: View {
     var entry: SashWidgetEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: WidgetSpacing.sm) {
             HStack {
                 Image(systemName: "rectangle.split.2x1")
-                    .foregroundColor(.accentColor)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.tint)
                 Text("Sash")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
                 Text("Quick Layout")
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
+            .foregroundStyle(.primary)
 
             if entry.layouts.isEmpty {
                 Spacer()
@@ -134,25 +147,26 @@ struct LayoutSwitcherView: View {
                     Spacer()
                     Text("No layouts")
                         .font(.system(size: 11))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Spacer()
                 }
                 Spacer()
             } else {
-                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 8) {
+                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: WidgetSpacing.sm) {
                     ForEach(entry.layouts.prefix(4)) { layout in
                         Link(destination: URL(string: "sash://apply/\(layout.id)")!) {
                             HStack {
-                                Text(layout.icon)
-                                    .font(.system(size: 14))
+                                Image(systemName: layout.icon)
+                                    .font(.system(size: 12))
+                                    .foregroundStyle(.tint)
                                 Text(layout.name)
                                     .font(.system(size: 11, weight: .medium))
                                     .lineLimit(1)
                             }
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 8)
-                            .background(Color.accentColor.opacity(0.2))
-                            .cornerRadius(6)
+                            .padding(.vertical, WidgetSpacing.sm)
+                            .background(.ultraThinMaterial)
+                            .clipShape(RoundedRectangle(cornerRadius: WidgetRadius.small))
                         }
                     }
                 }
@@ -162,75 +176,69 @@ struct LayoutSwitcherView: View {
 
             Text("Tap any layout to apply it")
                 .font(.system(size: 9))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
     }
 }
 
-// MARK: - Quick Snap View
-
 struct QuickSnapView: View {
     var body: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: WidgetSpacing.sm) {
             HStack {
                 Image(systemName: "rectangle.split.2x1")
-                    .foregroundColor(.accentColor)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(.tint)
                 Text("Sash")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
             }
+            .foregroundStyle(.primary)
 
-            HStack(spacing: 8) {
-                ForEach(["left", "right"], id: \.self) { pos in
-                    Link(destination: URL(string: "sash://snap/\(pos)")!) {
-                        Image(systemName: pos == "left" ? "arrow.left.square" : "arrow.right.square")
-                            .font(.system(size: 16))
-                            .frame(width: 32, height: 32)
-                            .background(Color.accentColor.opacity(0.2))
-                            .cornerRadius(6)
-                    }
-                }
-                ForEach(["top", "bottom"], id: \.self) { pos in
-                    Link(destination: URL(string: "sash://snap/\(pos)")!) {
-                        Image(systemName: pos == "top" ? "arrow.up.square" : "arrow.down.square")
-                            .font(.system(size: 16))
-                            .frame(width: 32, height: 32)
-                            .background(Color.accentColor.opacity(0.2))
-                            .cornerRadius(6)
-                    }
-                }
-            }
-
-            HStack(spacing: 8) {
-                Link(destination: URL(string: "sash://snap/center")!) {
-                    Image(systemName: "rectangle.center.inset.filled")
-                        .font(.system(size: 16))
-                        .frame(width: 32, height: 32)
-                        .background(Color.accentColor.opacity(0.2))
-                        .cornerRadius(6)
-                }
-                Link(destination: URL(string: "sash://snap/fill")!) {
-                    Image(systemName: "rectangle.fill")
-                        .font(.system(size: 16))
-                        .frame(width: 32, height: 32)
-                        .background(Color.accentColor.opacity(0.2))
-                        .cornerRadius(6)
-                }
-            }
+            snapButtonGrid
 
             Spacer()
 
             Text("Tap to snap")
                 .font(.system(size: 9))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
         .widgetURL(URL(string: "sash://open")!)
     }
-}
 
-// MARK: - Widget Bundle
+    private var snapButtonGrid: some View {
+        VStack(spacing: WidgetSpacing.sm) {
+            HStack(spacing: WidgetSpacing.sm) {
+                snapButton(icon: "arrow.left.square", url: "sash://snap/left")
+                snapButton(icon: "arrow.right.square", url: "sash://snap/right")
+                snapButton(icon: "arrow.up.square", url: "sash://snap/top")
+                snapButton(icon: "arrow.down.square", url: "sash://snap/bottom")
+            }
+            HStack(spacing: WidgetSpacing.sm) {
+                snapButton(icon: "rectangle.center.inset.filled", url: "sash://snap/center")
+                snapButton(icon: "rectangle.fill", url: "sash://snap/fill")
+                Spacer()
+                Spacer()
+            }
+        }
+    }
+
+    private func snapButton(icon: String, url: String) -> some View {
+        Link(destination: URL(string: url)!) {
+            Image(systemName: icon)
+                .font(.system(size: 14))
+                .frame(width: 28, height: 28)
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: WidgetRadius.small))
+        }
+        .foregroundStyle(.tint)
+    }
+}
 
 @main
 struct SashWidgetBundle: WidgetBundle {
@@ -238,7 +246,7 @@ struct SashWidgetBundle: WidgetBundle {
         SashCurrentLayoutWidget()
         SashLayoutSwitcherWidget()
         SashQuickSnapWidget()
-        SashSyncStatusWidget()
+        SashSyncStatusWidgetR18()
         SashSyncActivityWidget()
         SashConflictWidget()
     }

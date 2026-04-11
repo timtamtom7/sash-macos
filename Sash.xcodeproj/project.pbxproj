@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0AE260C3BF3F335812BE15BD /* SashVisionOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD03024ADE7558AE095F7C1 /* SashVisionOS.swift */; };
+		0EA8C49FCBA3D0416F99DDEB /* SnapPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564193E31523156F44D6A51 /* SnapPreset.swift */; };
 		16024BEB809AF8D887646F0C /* StoreKit.storekit in Resources */ = {isa = PBXBuildFile; fileRef = C8FB11C2AF158DDF4E3F3430 /* StoreKit.storekit */; };
 		1C73911FA60DAC491DE89B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2BFBFF900AB5B734DE0C4F /* AppDelegate.swift */; };
 		270A550CC94BBD815E43BD6E /* iCloudSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */; };
@@ -16,11 +17,13 @@
 		34B02D617BE3C06CDEC745EE /* PrivacyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C8990D8DB5949BCC7F513CE /* PrivacyManager.swift */; };
 		3F17783530631343B026722C /* ShortcutsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */; };
 		4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */; };
+		4BA674C650411F1597D7C16A /* SnapResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AD77BC4DA4380B61181D7CB /* SnapResult.swift */; };
 		4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09C7E2B317331B3B3038124 /* SashPopoverView.swift */; };
 		4ED7C61AA5223574ACB3134E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0007A83B3AFB85EF8892DF5D /* APIService.swift */; };
 		71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */; };
 		74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 986B8B11F8E2EBF868AACE53 /* SettingsStore.swift */; };
 		75E9BC33918C0004D3F08509 /* AutomationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0359A90CC203CAF0BE08C /* AutomationManager.swift */; };
+		8059A29941F9D70E537524AF /* SnapBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EAE3BFE42B603081E827FB /* SnapBorderView.swift */; };
 		80A199EAE9A3FAF96611FF69 /* KeyboardShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */; };
 		86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1035949D1A3169FBB80A99E4 /* ShortcutMonitor.swift */; };
 		90B3C26908D89108BD7E207B /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A35093811666B2317076867 /* Theme.swift */; };
@@ -30,6 +33,7 @@
 		A4286830FF275D76ED7A00AF /* SashExport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C85CDF14F25A44287E1A4B /* SashExport.swift */; };
 		A850A5C1749DFF077685044F /* SashWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */; };
 		ADE744F1094E2B1D01F275FB /* AccessibilityExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */; };
+		B35BAB8787CAA062C0AB98B9 /* SashState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BA90307B72E757D764C6CB /* SashState.swift */; };
 		BE7869660C44E0CB7C879F02 /* WindowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */; };
 		C505E59B373F99119AD74840 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123C24153F41FF79FC061177 /* Assets.xcassets */; };
 		D270A7228D95B5C419DB7A28 /* DisplayProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3219194163512B54E92DC696 /* DisplayProfile.swift */; };
@@ -39,6 +43,7 @@
 		DB1EFE7E2A9C7F93A05CF8F9 /* SyncWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA19746BC919327DBBF828 /* SyncWidgets.swift */; };
 		F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */; };
 		F5A2ED048C8CC5952E342C32 /* EnterpriseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEA380F687A49620B6F47F4 /* EnterpriseService.swift */; };
+		F889814A266A0639EF764568 /* SashStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368A44C452D84D6235E127C9 /* SashStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,17 +82,20 @@
 		2266AA91EE33CA02D2F1D4F6 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		2672864E2DD2F0A9386E408B /* ShortcutsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortcutsManager.swift; sourceTree = "<group>"; };
 		3219194163512B54E92DC696 /* DisplayProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayProfile.swift; sourceTree = "<group>"; };
+		368A44C452D84D6235E127C9 /* SashStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashStore.swift; sourceTree = "<group>"; };
 		47B97E1D91CFBCEFB90F6F28 /* WindowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowManager.swift; sourceTree = "<group>"; };
 		48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLayout.swift; sourceTree = "<group>"; };
 		52C85CDF14F25A44287E1A4B /* SashExport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashExport.swift; sourceTree = "<group>"; };
 		567A9749C573D0F2E802E180 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		57852786C129808480A60A60 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5EA0ECC2CB2E499278F03618 /* SnapPositionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPositionRow.swift; sourceTree = "<group>"; };
+		6AD77BC4DA4380B61181D7CB /* SnapResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapResult.swift; sourceTree = "<group>"; };
 		6AEA380F687A49620B6F47F4 /* EnterpriseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterpriseService.swift; sourceTree = "<group>"; };
 		6DD0359A90CC203CAF0BE08C /* AutomationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomationManager.swift; sourceTree = "<group>"; };
 		71190ADE65A1C577EA5E4B61 /* iCloudSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudSyncManager.swift; sourceTree = "<group>"; };
 		79FEF45041B7E4023D388668 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
 		81243F464E833DD4B8B91211 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		86EAE3BFE42B603081E827FB /* SnapBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapBorderView.swift; sourceTree = "<group>"; };
 		8A35093811666B2317076867 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		9172A44A766ABF6251A75763 /* Sash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		93A29F49D0A5BF4EA3592708 /* MultiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiMonitor.swift; sourceTree = "<group>"; };
@@ -95,10 +103,12 @@
 		9DD03024ADE7558AE095F7C1 /* SashVisionOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashVisionOS.swift; sourceTree = "<group>"; };
 		AAC3CC53839E1B7B0181F8F8 /* SashWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashWidgets.swift; sourceTree = "<group>"; };
 		B09C7E2B317331B3B3038124 /* SashPopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashPopoverView.swift; sourceTree = "<group>"; };
+		B8BA90307B72E757D764C6CB /* SashState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SashState.swift; sourceTree = "<group>"; };
 		C145BDC88328E2784FD7B024 /* Sash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sash.entitlements; sourceTree = "<group>"; };
 		C8FB11C2AF158DDF4E3F3430 /* StoreKit.storekit */ = {isa = PBXFileReference; path = StoreKit.storekit; sourceTree = "<group>"; };
 		D1EB3F4131A05FCB409E8519 /* SnapPosition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPosition.swift; sourceTree = "<group>"; };
 		E07EEA9F5612C10EE751DD72 /* CollaborationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollaborationService.swift; sourceTree = "<group>"; };
+		E564193E31523156F44D6A51 /* SnapPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPreset.swift; sourceTree = "<group>"; };
 		E61B258C12CF308E75BD0BB1 /* iOSCompanionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCompanionService.swift; sourceTree = "<group>"; };
 		EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcuts.swift; sourceTree = "<group>"; };
 		F126443E41DCE07BD99BDFE4 /* AccessibilityExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityExtensions.swift; sourceTree = "<group>"; };
@@ -240,7 +250,12 @@
 				EC3E8886499C454BFE4C70DF /* KeyboardShortcuts.swift */,
 				2266AA91EE33CA02D2F1D4F6 /* main.swift */,
 				52C85CDF14F25A44287E1A4B /* SashExport.swift */,
+				B8BA90307B72E757D764C6CB /* SashState.swift */,
+				368A44C452D84D6235E127C9 /* SashStore.swift */,
 				48EE2CC46ECEE64AAFC1CFC9 /* SavedLayout.swift */,
+				86EAE3BFE42B603081E827FB /* SnapBorderView.swift */,
+				E564193E31523156F44D6A51 /* SnapPreset.swift */,
+				6AD77BC4DA4380B61181D7CB /* SnapResult.swift */,
 				F23888292F2C131A6E1D48C2 /* WindowHistoryManager.swift */,
 			);
 			path = App;
@@ -366,13 +381,18 @@
 				34B02D617BE3C06CDEC745EE /* PrivacyManager.swift in Sources */,
 				A4286830FF275D76ED7A00AF /* SashExport.swift in Sources */,
 				4E5736467FF538F449344851 /* SashPopoverView.swift in Sources */,
+				B35BAB8787CAA062C0AB98B9 /* SashState.swift in Sources */,
+				F889814A266A0639EF764568 /* SashStore.swift in Sources */,
 				0AE260C3BF3F335812BE15BD /* SashVisionOS.swift in Sources */,
 				4061208F5F574D4F4DAA06B4 /* SavedLayout.swift in Sources */,
 				74FB37B86B9DEC1AB3F9ACE3 /* SettingsStore.swift in Sources */,
 				86B65D9396DDBC45AF575310 /* ShortcutMonitor.swift in Sources */,
 				3F17783530631343B026722C /* ShortcutsManager.swift in Sources */,
+				8059A29941F9D70E537524AF /* SnapBorderView.swift in Sources */,
 				71F709620623D0472DF90A90 /* SnapPosition.swift in Sources */,
 				F517792ACFF92C7E8A0FEA83 /* SnapPositionRow.swift in Sources */,
+				0EA8C49FCBA3D0416F99DDEB /* SnapPreset.swift in Sources */,
+				4BA674C650411F1597D7C16A /* SnapResult.swift in Sources */,
 				33AB15BDEB2A2819B924DAA7 /* SubscriptionManager.swift in Sources */,
 				90B3C26908D89108BD7E207B /* Theme.swift in Sources */,
 				33AE513C2692BFE1E9D908AA /* WindowHistoryManager.swift in Sources */,

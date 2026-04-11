@@ -1,7 +1,19 @@
 import WidgetKit
 import SwiftUI
 
-// MARK: - Sync Status Entry (R18)
+private enum WidgetSpacing {
+    static let xs: CGFloat = 4
+    static let sm: CGFloat = 6
+    static let md: CGFloat = 8
+    static let lg: CGFloat = 12
+    static let xl: CGFloat = 16
+}
+
+private enum WidgetRadius {
+    static let small: CGFloat = 6
+    static let medium: CGFloat = 8
+    static let large: CGFloat = 12
+}
 
 struct SyncStatusEntry: TimelineEntry {
     let date: Date
@@ -9,7 +21,7 @@ struct SyncStatusEntry: TimelineEntry {
     let syncStatus: SyncStatus
     let conflictCount: Int
     let recentChanges: [SyncChange]
-    let storageUsed: Int64 // bytes
+    let storageUsed: Int64
     let storageQuota: Int64
 
     enum SyncStatus: String {
@@ -26,8 +38,6 @@ struct SyncStatusEntry: TimelineEntry {
         let timestamp: Date
     }
 }
-
-// MARK: - Sync Provider (R18)
 
 struct SyncStatusProvider: TimelineProvider {
     func placeholder(in context: Context) -> SyncStatusEntry {
@@ -78,87 +88,107 @@ struct SyncStatusProvider: TimelineProvider {
     }
 }
 
-// MARK: - Sync Status Widget (R18 - Large)
-
 struct SyncStatusWidgetView: View {
     var entry: SyncStatusEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            // Header
-            HStack {
-                Image(systemName: "arrow.triangle.2.circlepath")
-                    .foregroundColor(.accentColor)
-                Text("Sash Sync")
-                    .font(.system(size: 14, weight: .semibold))
-                Spacer()
-                statusBadge
-            }
-
-            Divider()
-
-            // Stats row
-            HStack(spacing: 16) {
-                StatView(value: "\(entry.folderCount)", label: "Folders")
-                StatView(value: "\(entry.conflictCount)", label: "Conflicts")
-                StatView(value: formatStorage(entry.storageUsed), label: "Storage")
-            }
-
-            Divider()
-
-            // Storage bar
-            VStack(alignment: .leading, spacing: 4) {
-                HStack {
-                    Text("Storage")
-                        .font(.system(size: 10))
-                        .foregroundColor(.secondary)
-                    Spacer()
-                    Text("\(Int(Double(entry.storageUsed) / Double(entry.storageQuota) * 100))%")
-                        .font(.system(size: 10, weight: .medium))
-                        .foregroundColor(storageColor)
-                }
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(Color.secondary.opacity(0.2))
-                            .frame(height: 6)
-                        RoundedRectangle(cornerRadius: 4)
-                            .fill(storageColor)
-                            .frame(width: geo.size.width * CGFloat(Double(entry.storageUsed) / Double(entry.storageQuota)), height: 6)
-                    }
-                }
-            }
-
-            // Interactive: Pause/Resume
-            Link(destination: URL(string: "sash://toggle-sync")!) {
-                HStack {
-                    Image(systemName: entry.syncStatus == .paused ? "play.fill" : "pause.fill")
-                        .font(.system(size: 12))
-                    Text(entry.syncStatus == .paused ? "Resume Sync" : "Pause Sync")
-                        .font(.system(size: 12, weight: .medium))
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 8)
-                .background(Color.accentColor.opacity(0.2))
-                .cornerRadius(6)
-            }
+        VStack(alignment: .leading, spacing: WidgetSpacing.md) {
+            headerRow
+            WidgetDivider()
+            statsRow
+            WidgetDivider()
+            storageSection
+            syncButton
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
+    }
+
+    private var headerRow: some View {
+        HStack {
+            Image(systemName: "arrow.triangle.2.circlepath")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundStyle(.tint)
+            Text("Sash Sync")
+                .font(.system(size: 14, weight: .semibold))
+            Spacer()
+            statusBadge
+        }
+        .foregroundStyle(.primary)
     }
 
     @ViewBuilder
-    var statusBadge: some View {
-        HStack(spacing: 4) {
+    private var statusBadge: some View {
+        HStack(spacing: WidgetSpacing.xs) {
             Circle()
                 .fill(statusColor)
                 .frame(width: 6, height: 6)
             Text(entry.syncStatus.rawValue.capitalized)
                 .font(.system(size: 10, weight: .medium))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
     }
 
-    var statusColor: Color {
+    private var statsRow: some View {
+        HStack(spacing: WidgetSpacing.lg) {
+            StatView(value: "\(entry.folderCount)", label: "Folders")
+            StatView(value: "\(entry.conflictCount)", label: "Conflicts")
+            StatView(value: formatStorage(entry.storageUsed), label: "Storage")
+        }
+    }
+
+    private var storageSection: some View {
+        VStack(alignment: .leading, spacing: WidgetSpacing.xs) {
+            HStack {
+                Text("Storage")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.secondary)
+                Spacer()
+                Text("\(Int(Double(entry.storageUsed) / Double(entry.storageQuota) * 100))%")
+                    .font(.system(size: 10, weight: .medium))
+                    .foregroundStyle(storageColor)
+            }
+            storageBar
+        }
+    }
+
+    private var storageBar: some View {
+        GeometryReader { geo in
+            ZStack(alignment: .leading) {
+                RoundedRectangle(cornerRadius: WidgetRadius.small)
+                    .fill(Color.secondary.opacity(0.2))
+                    .frame(height: 6)
+                RoundedRectangle(cornerRadius: WidgetRadius.small)
+                    .fill(storageColor)
+                    .frame(width: geo.size.width * storageFraction, height: 6)
+            }
+        }
+        .frame(height: 6)
+    }
+
+    private var storageFraction: CGFloat {
+        CGFloat(Double(entry.storageUsed) / Double(entry.storageQuota))
+    }
+
+    private var syncButton: some View {
+        Link(destination: URL(string: "sash://toggle-sync")!) {
+            HStack {
+                Image(systemName: entry.syncStatus == .paused ? "play.fill" : "pause.fill")
+                    .font(.system(size: 12))
+                Text(entry.syncStatus == .paused ? "Resume Sync" : "Pause Sync")
+                    .font(.system(size: 12, weight: .medium))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, WidgetSpacing.sm)
+            .background(.ultraThinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: WidgetRadius.medium))
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.tint)
+    }
+
+    private var statusColor: Color {
         switch entry.syncStatus {
         case .synced: return .green
         case .syncing: return .blue
@@ -167,14 +197,14 @@ struct SyncStatusWidgetView: View {
         }
     }
 
-    var storageColor: Color {
+    private var storageColor: Color {
         let pct = Double(entry.storageUsed) / Double(entry.storageQuota)
         if pct > 0.9 { return .red }
         if pct > 0.7 { return .orange }
         return .green
     }
 
-    func formatStorage(_ bytes: Int64) -> String {
+    private func formatStorage(_ bytes: Int64) -> String {
         let gb = Double(bytes) / 1_000_000_000
         if gb >= 1 {
             return String(format: "%.1f GB", gb)
@@ -184,7 +214,13 @@ struct SyncStatusWidgetView: View {
     }
 }
 
-// MARK: - Stat View
+private struct WidgetDivider: View {
+    var body: some View {
+        Rectangle()
+            .fill(Color.white.opacity(0.1))
+            .frame(height: 1)
+    }
+}
 
 struct StatView: View {
     let value: String
@@ -194,31 +230,32 @@ struct StatView: View {
         VStack(spacing: 2) {
             Text(value)
                 .font(.system(size: 18, weight: .semibold))
+                .foregroundStyle(.primary)
             Text(label)
                 .font(.system(size: 9))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
     }
 }
 
-// MARK: - Sync Activity Widget (R18 - Medium)
-
 struct SyncActivityWidgetView: View {
     var entry: SyncStatusEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: WidgetSpacing.sm) {
             HStack {
                 Image(systemName: "clock")
-                    .foregroundColor(.accentColor)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.tint)
                 Text("Recent Activity")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
                 Text(entry.date, style: .time)
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
+                    .foregroundStyle(.secondary)
             }
+            .foregroundStyle(.primary)
 
             if entry.recentChanges.isEmpty {
                 Spacer()
@@ -226,62 +263,68 @@ struct SyncActivityWidgetView: View {
                     Spacer()
                     Text("No recent changes")
                         .font(.system(size: 11))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                     Spacer()
                 }
                 Spacer()
             } else {
                 ForEach(entry.recentChanges.prefix(5)) { change in
-                    HStack {
-                        Image(systemName: change.action == "uploaded" ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
-                            .font(.system(size: 10))
-                            .foregroundColor(change.action == "uploaded" ? .green : .blue)
-                        Text(change.fileName)
-                            .font(.system(size: 11))
-                            .lineLimit(1)
-                        Spacer()
-                        Text(change.timestamp, style: .relative)
-                            .font(.system(size: 9))
-                            .foregroundColor(.secondary)
-                    }
+                    activityRow(change)
                 }
             }
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
+    }
+
+    private func activityRow(_ change: SyncStatusEntry.SyncChange) -> some View {
+        HStack {
+            Image(systemName: change.action == "uploaded" ? "arrow.up.circle.fill" : "arrow.down.circle.fill")
+                .font(.system(size: 10))
+                .foregroundStyle(change.action == "uploaded" ? .green : .blue)
+            Text(change.fileName)
+                .font(.system(size: 11))
+                .lineLimit(1)
+            Spacer()
+            Text(change.timestamp, style: .relative)
+                .font(.system(size: 9))
+                .foregroundStyle(.secondary)
+        }
     }
 }
-
-// MARK: - Conflict Widget (R18)
 
 struct ConflictWidgetView: View {
     var entry: SyncStatusEntry
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: WidgetSpacing.sm) {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .foregroundColor(.orange)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundStyle(.orange)
                 Text("Conflicts")
                     .font(.system(size: 12, weight: .semibold))
                 Spacer()
                 Text("\(entry.conflictCount)")
                     .font(.system(size: 20, weight: .bold))
-                    .foregroundColor(.orange)
+                    .foregroundStyle(.orange)
             }
+            .foregroundStyle(.primary)
 
-            Divider()
+            WidgetDivider()
 
             if entry.conflictCount == 0 {
                 Spacer()
                 HStack {
                     Spacer()
-                    VStack(spacing: 4) {
+                    VStack(spacing: WidgetSpacing.xs) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 24))
-                            .foregroundColor(.green)
+                            .foregroundStyle(.green)
                         Text("No conflicts")
                             .font(.system(size: 11))
-                            .foregroundColor(.secondary)
+                            .foregroundStyle(.secondary)
                     }
                     Spacer()
                 }
@@ -289,24 +332,30 @@ struct ConflictWidgetView: View {
             } else {
                 Text("Tap to resolve")
                     .font(.system(size: 10))
-                    .foregroundColor(.secondary)
-                Link(destination: URL(string: "sash://conflicts")!) {
-                    Text("View Conflicts")
-                        .font(.system(size: 12, weight: .medium))
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 6)
-                        .background(Color.orange.opacity(0.2))
-                        .cornerRadius(6)
-                }
+                    .foregroundStyle(.secondary)
+                resolveButton
             }
         }
-        .padding()
+        .padding(WidgetSpacing.md)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
+    }
+
+    private var resolveButton: some View {
+        Link(destination: URL(string: "sash://conflicts")!) {
+            Text("View Conflicts")
+                .font(.system(size: 12, weight: .medium))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, WidgetSpacing.sm)
+                .background(.ultraThinMaterial)
+                .clipShape(RoundedRectangle(cornerRadius: WidgetRadius.medium))
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.orange)
     }
 }
 
-// MARK: - R18 Widget Definitions
-
-struct SashSyncStatusWidget: Widget {
+struct SashSyncStatusWidgetR18: Widget {
     let kind: String = "SashSyncStatusWidget"
 
     var body: some WidgetConfiguration {
@@ -326,7 +375,7 @@ struct SashSyncActivityWidget: Widget {
         StaticConfiguration(kind: kind, provider: SyncStatusProvider()) { entry in
             SyncActivityWidgetView(entry: entry)
         }
-        .configurationDisplayName("Sync Activity")
+        .configurationDisplayName(" Sync Activity")
         .description("Recent sync activity across all folders.")
         .supportedFamilies([.systemMedium])
     }
@@ -344,5 +393,3 @@ struct SashConflictWidget: Widget {
         .supportedFamilies([.systemSmall])
     }
 }
-
-
