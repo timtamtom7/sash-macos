@@ -20,23 +20,36 @@ final class SashAPIService: ObservableObject {
         let body: String
 
         init?(rawValue: String) {
+            guard rawValue.utf8.count > 0, rawValue.utf8.count <= 65536 else { return nil }
+            
             let parts = rawValue.components(separatedBy: "\r\n\r\n")
-            let headerBlock = parts.first ?? rawValue
+            guard parts.count >= 1 else { return nil }
+            
+            let headerBlock = parts[0]
             body = parts.count > 1 ? parts.dropFirst().joined(separator: "\r\n\r\n") : ""
 
             let lines = headerBlock.components(separatedBy: "\r\n")
-            guard let requestLine = lines.first else { return nil }
-            let requestParts = requestLine.split(separator: " ")
+            guard let requestLine = lines.first, !requestLine.isEmpty else { return nil }
+            
+            let requestParts = requestLine.split(separator: " ", maxSplits: 2)
             guard requestParts.count >= 2 else { return nil }
 
-            method = String(requestParts[0])
-            path = String(requestParts[1]).components(separatedBy: "?").first ?? String(requestParts[1])
+            let validMethods = ["GET", "POST", "PUT", "DELETE", "PATCH"]
+            method = String(requestParts[0]).uppercased()
+            guard validMethods.contains(method) else { return nil }
+
+            let rawPath = String(requestParts[1])
+            guard rawPath.utf8.count <= 2048 else { return nil }
+            path = rawPath.components(separatedBy: "?").first ?? rawPath
 
             var parsedHeaders: [String: String] = [:]
             for line in lines.dropFirst() {
+                guard !line.isEmpty else { continue }
                 let segments = line.split(separator: ":", maxSplits: 1)
                 guard segments.count == 2 else { continue }
-                parsedHeaders[String(segments[0]).lowercased()] = String(segments[1]).trimmingCharacters(in: .whitespaces)
+                let key = String(segments[0]).lowercased()
+                guard key.utf8.count <= 256 else { continue }
+                parsedHeaders[key] = String(segments[1]).trimmingCharacters(in: .whitespaces)
             }
             headers = parsedHeaders
         }
@@ -51,6 +64,7 @@ final class SashAPIService: ObservableObject {
     private let keychainService = "com.sash.local-api"
     private let keychainAccount = "default-api-key"
     private let isoFormatter = ISO8601DateFormatter()
+    private let rateLimitLock = NSLock()
     private var rateLimitWindowStart = Date()
     private var requestsInWindow = 0
     @Published var isRunning = false
@@ -247,6 +261,8 @@ final class SashAPIService: ObservableObject {
     }
 
     private func checkRateLimit() -> Bool {
+        rateLimitLock.lock()
+        defer { rateLimitLock.unlock() }
         let now = Date()
         if now.timeIntervalSince(rateLimitWindowStart) >= 60 {
             rateLimitWindowStart = now
@@ -294,14 +310,20 @@ final class SashAPIService: ObservableObject {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrService as String: keychainService,
-            kSecAttrAccount as String: account
+            kSecAttrAccount as String: account,
+            kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
         ]
-        let attributes = [kSecValueData as String: data]
-        let status = SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
-        if status == errSecItemNotFound {
-            var insert = query
-            insert[kSecValueData as String] = data
-            SecItemAdd(insert as CFDictionary, nil)
+        
+        var insert = query
+        insert[kSecValueData as String] = data
+        
+        let status = SecItemAdd(insert as CFDictionary, nil)
+        if status == errSecDuplicateItem {
+            let attributes: [String: Any] = [
+                kSecValueData as String: data,
+                kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlockedThisDeviceOnly
+            ]
+            SecItemUpdate(query as CFDictionary, attributes as CFDictionary)
         }
     }
 

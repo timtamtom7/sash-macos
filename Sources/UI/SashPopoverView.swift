@@ -31,12 +31,10 @@ struct SashPopoverView: View {
                 }
                 .tag(3)
         }
-        .frame(width: 400, height: 380)
-        .background(Theme.Colors.background)
+        .frame(width: 400, height: 340)
+        .liquidGlassBackground()
     }
 }
-
-// MARK: - Snap Positions Tab
 
 struct SnapPositionsTabView: View {
     @ObservedObject var sashStore: SashStore
@@ -48,8 +46,8 @@ struct SnapPositionsTabView: View {
                 .padding(.top, Theme.Spacing.md)
                 .padding(.bottom, Theme.Spacing.sm)
 
-            Divider()
-                .background(Theme.Colors.border)
+            GlassDivider()
+                .padding(.horizontal, Theme.Spacing.md)
 
             if !WindowManager.shared.isAccessibilityEnabled() || sashStore.showAccessibilityAlert {
                 accessibilityGuideView
@@ -57,8 +55,8 @@ struct SnapPositionsTabView: View {
                 snapPositionsView
             }
 
-            Divider()
-                .background(Theme.Colors.border)
+            GlassDivider()
+                .padding(.horizontal, Theme.Spacing.md)
                 .padding(.top, Theme.Spacing.sm)
 
             statusLineView
@@ -70,9 +68,12 @@ struct SnapPositionsTabView: View {
     private var headerView: some View {
         HStack {
             Text("Sash")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(Theme.Colors.textPrimary)
+                .font(Theme.Typography.title)
+                .foregroundColor(.primary)
             Spacer()
+            Text("Window Snapping")
+                .font(Theme.Typography.caption)
+                .foregroundColor(.secondary)
         }
     }
 
@@ -80,8 +81,8 @@ struct SnapPositionsTabView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text("SNAP POSITIONS")
                 .font(Theme.Typography.sectionHeader)
-                .foregroundColor(Theme.Colors.textTertiary)
-                .tracking(0.06)
+                .foregroundColor(.secondary)
+                .tracking(0.08)
                 .padding(.horizontal, Theme.Spacing.md)
                 .padding(.top, Theme.Spacing.md)
                 .padding(.bottom, Theme.Spacing.sm)
@@ -90,9 +91,9 @@ struct SnapPositionsTabView: View {
                 SnapPositionRow(position: position)
                     .padding(.horizontal, Theme.Spacing.md)
                 if position != SnapPosition.allCases.last {
-                    Divider()
-                        .background(Theme.Colors.border)
-                        .padding(.leading, 44)
+                    GlassDivider()
+                        .padding(.leading, 44 + Theme.Spacing.md)
+                        .padding(.trailing, Theme.Spacing.md)
                 }
             }
 
@@ -101,55 +102,58 @@ struct SnapPositionsTabView: View {
     }
 
     private var accessibilityGuideView: some View {
-        VStack(spacing: Theme.Spacing.md) {
+        VStack(spacing: Theme.Spacing.lg) {
             Spacer()
-            Image(systemName: "lock.shield")
+            Image(systemName: "lock.shield.fill")
                 .font(.system(size: 40))
-                .foregroundColor(Theme.Colors.accent)
+                .glassIcon()
+                .accessibilityLabel("Security shield")
             Text("Accessibility Access Required")
-                .font(.system(size: 14, weight: .semibold))
-                .foregroundColor(Theme.Colors.textPrimary)
+                .font(Theme.Typography.titleSmall)
+                .foregroundColor(.primary)
+                .accessibilityLabel("Accessibility access required")
             Text("Sash needs accessibility permission to move and resize windows.")
                 .font(Theme.Typography.caption)
-                .foregroundColor(Theme.Colors.textSecondary)
+                .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, Theme.Spacing.lg)
+                .padding(.horizontal, Theme.Spacing.xl)
+                .accessibilityLabel("Sash needs accessibility permission to move and resize windows.")
             Button(action: requestAccessibility) {
-                HStack {
-                    Image(systemName: "checkmark.circle")
-                    Text("Grant Access")
-                }
-                .font(Theme.Typography.body)
-                .foregroundColor(.white)
-                .padding(.horizontal, Theme.Spacing.md)
-                .padding(.vertical, Theme.Spacing.sm)
-                .background(Theme.Colors.accent)
-                .cornerRadius(Theme.CornerRadius.small)
+                Label("Grant Access", systemImage: "checkmark.circle.fill")
+                    .font(Theme.Typography.body)
+                    .foregroundColor(.white)
+                    .padding(.horizontal, Theme.Spacing.lg)
+                    .padding(.vertical, Theme.Spacing.sm)
+                    .background(Theme.Colors.accentPrimary)
+                    .cornerRadius(Theme.CornerRadius.medium)
             }
             .buttonStyle(.plain)
+            .accessibilityLabel("Grant accessibility access")
+            .accessibilityHint("Opens system preferences to grant accessibility permission")
             Spacer()
         }
         .frame(maxWidth: .infinity)
         .padding(Theme.Spacing.md)
+        .accessibilityElement(children: .combine)
     }
 
     private var statusLineView: some View {
         HStack {
             VStack(alignment: .leading, spacing: 2) {
-                HStack(spacing: 4) {
+                HStack(spacing: Theme.Spacing.xs) {
                     Text("Focused:")
-                        .foregroundColor(Theme.Colors.textTertiary)
+                        .foregroundColor(.secondary)
                     Text(sashStore.focusedAppName)
-                        .foregroundColor(Theme.Colors.textSecondary)
+                        .foregroundColor(.primary)
                 }
                 .font(Theme.Typography.caption)
 
                 if let position = sashStore.lastSnapResult.position {
-                    HStack(spacing: 4) {
+                    HStack(spacing: Theme.Spacing.xs) {
                         Text("Position:")
-                            .foregroundColor(Theme.Colors.textTertiary)
+                            .foregroundColor(.secondary)
                         Text(position.rawValue)
-                            .foregroundColor(Theme.Colors.accent)
+                            .foregroundColor(Theme.Colors.accentPrimary)
                     }
                     .font(Theme.Typography.caption)
                 }
@@ -164,74 +168,85 @@ struct SnapPositionsTabView: View {
     }
 }
 
-// MARK: - Monitors Tab
-
 struct MonitorsTabView: View {
     @ObservedObject var sashStore: SashStore
+    @State private var isRefreshing = false
 
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Text("Monitors")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Theme.Colors.textPrimary)
+                    .font(Theme.Typography.title)
+                    .foregroundColor(.primary)
                 Spacer()
-                Button(action: { sashStore.refreshMonitors() }) {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.system(size: 12))
-                        .foregroundColor(Theme.Colors.textSecondary)
-                }
-                .buttonStyle(.plain)
+                refreshButton
             }
-            .padding(12)
+            .padding(.horizontal, Theme.Spacing.md)
+            .padding(.vertical, Theme.Spacing.sm)
 
-            Divider()
+            GlassDivider()
+                .padding(.horizontal, Theme.Spacing.md)
 
             ScrollView {
-                LazyVStack(spacing: 8) {
+                LazyVStack(spacing: Theme.Spacing.md) {
                     ForEach(sashStore.monitors) { monitor in
                         monitorRow(monitor)
                     }
                 }
-                .padding(12)
+                .padding(Theme.Spacing.md)
             }
         }
     }
 
+    private var refreshButton: some View {
+        Button(action: {
+            isRefreshing = true
+            sashStore.refreshMonitors()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                isRefreshing = false
+            }
+        }) {
+            Image(systemName: "arrow.clockwise")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(Theme.Colors.accentPrimary)
+                .rotationEffect(.degrees(isRefreshing ? 360 : 0))
+                .animation(isRefreshing ? .linear(duration: 0.5).repeatForever(autoreverses: false) : .default, value: isRefreshing)
+        }
+        .buttonStyle(.plain)
+    }
+
     private func monitorRow(_ monitor: MonitorInfo) -> some View {
-        HStack(spacing: 12) {
+        HStack(spacing: Theme.Spacing.md) {
             Image(systemName: monitor.isMain ? "display" : "rectangle")
                 .font(.system(size: 20))
-                .foregroundColor(monitor.isMain ? Theme.Colors.accent : Theme.Colors.textSecondary)
+                .frame(width: 24, height: 24)
+                .glassIcon(monitor.isMain ? Theme.Colors.accentPrimary : .secondary)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(monitor.name)
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(Theme.Colors.textPrimary)
+                    .font(Theme.Typography.body)
+                    .foregroundColor(.primary)
                 Text("\(Int(monitor.width)) × \(Int(monitor.height))")
                     .font(.system(size: 11, design: .monospaced))
-                    .foregroundColor(Theme.Colors.textSecondary)
+                    .foregroundColor(.secondary)
             }
 
             Spacer()
 
             if monitor.isMain {
                 Text("Main")
-                    .font(.system(size: 10, weight: .medium))
+                    .font(Theme.Typography.captionBold)
                     .foregroundColor(.white)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(Theme.Colors.accent)
-                    .cornerRadius(4)
+                    .padding(.horizontal, Theme.Spacing.sm)
+                    .padding(.vertical, Theme.Spacing.xs)
+                    .background(Theme.Colors.accentPrimary)
+                    .cornerRadius(Theme.CornerRadius.small)
             }
         }
-        .padding(12)
-        .background(Theme.Colors.surface)
-        .cornerRadius(8)
+        .padding(Theme.Spacing.md)
+        .liquidGlassCard()
     }
 }
-
-// MARK: - Presets Tab
 
 struct PresetsTabView: View {
     @ObservedObject var sashStore: SashStore
@@ -241,130 +256,190 @@ struct PresetsTabView: View {
         VStack(spacing: 0) {
             HStack {
                 Text("Window Presets")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(Theme.Colors.textPrimary)
+                    .font(Theme.Typography.title)
+                    .foregroundColor(.primary)
                 Spacer()
-                Button(action: { showAddPreset = true }) {
-                    Image(systemName: "plus")
-                        .font(.system(size: 12))
-                        .foregroundColor(Theme.Colors.accent)
-                }
-                .buttonStyle(.plain)
+                addButton
             }
-            .padding(12)
+            .padding(.horizontal, Theme.Spacing.md)
+            .padding(.vertical, Theme.Spacing.sm)
 
-            Divider()
+            GlassDivider()
+                .padding(.horizontal, Theme.Spacing.md)
 
             if sashStore.snapPresets.isEmpty {
-                VStack(spacing: 8) {
-                    Spacer()
-                    Image(systemName: "square.grid.2x2")
-                        .font(.system(size: 28))
-                        .foregroundColor(Theme.Colors.textSecondary)
-                    Text("No presets yet")
-                        .font(.system(size: 13))
-                        .foregroundColor(Theme.Colors.textSecondary)
-                    Text("Create presets to arrange multiple windows")
-                        .font(.system(size: 11))
-                        .foregroundColor(Theme.Colors.textTertiary)
-                    Spacer()
-                }
+                emptyStateView
             } else {
                 ScrollView {
-                    LazyVStack(spacing: 8) {
+                    LazyVStack(spacing: Theme.Spacing.md) {
                         ForEach(sashStore.snapPresets) { preset in
                             presetRow(preset)
                         }
                     }
-                    .padding(12)
+                    .padding(Theme.Spacing.md)
                 }
             }
         }
     }
 
+    private var addButton: some View {
+        Button(action: { showAddPreset = true }) {
+            Image(systemName: "plus.circle.fill")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(Theme.Colors.accentPrimary)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var emptyStateView: some View {
+        VStack(spacing: Theme.Spacing.md) {
+            Spacer()
+            Image(systemName: "square.grid.2x2.fill")
+                .font(.system(size: 32))
+                .glassIcon()
+            Text("No presets yet")
+                .font(Theme.Typography.body)
+                .foregroundColor(.primary)
+            Text("Create presets to arrange multiple windows")
+                .font(Theme.Typography.caption)
+                .foregroundColor(.secondary)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity)
+    }
+
     private func presetRow(_ preset: SnapPreset) -> some View {
         HStack {
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: Theme.Spacing.xs) {
                 Text(preset.name)
-                    .font(.system(size: 13, weight: .medium))
-                    .foregroundColor(Theme.Colors.textPrimary)
+                    .font(Theme.Typography.body)
+                    .foregroundColor(.primary)
                 Text("\(preset.positions.count) windows")
-                    .font(.system(size: 11))
-                    .foregroundColor(Theme.Colors.textSecondary)
+                    .font(Theme.Typography.caption)
+                    .foregroundColor(.secondary)
             }
             Spacer()
-            Button(action: { sashStore.deletePreset(preset.id) }) {
-                Image(systemName: "trash")
-                    .font(.system(size: 11))
-                    .foregroundColor(Theme.Colors.textSecondary)
-            }
-            .buttonStyle(.plain)
+            deleteButton(for: preset)
         }
-        .padding(12)
-        .background(Theme.Colors.surface)
-        .cornerRadius(8)
+        .padding(Theme.Spacing.md)
+        .liquidGlassCard()
+    }
+
+    private func deleteButton(for preset: SnapPreset) -> some View {
+        Button(action: { sashStore.deletePreset(preset.id) }) {
+            Image(systemName: "trash")
+                .font(.system(size: 12, weight: .medium))
+                .foregroundColor(Theme.Colors.destructive)
+        }
+        .buttonStyle(.plain)
     }
 }
-
-// MARK: - Settings Tab
 
 struct SettingsTabView: View {
     @ObservedObject var sashStore: SashStore
 
     var body: some View {
         ScrollView {
-            VStack(spacing: 16) {
-                // Startup
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("STARTUP")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundColor(Theme.Colors.textSecondary)
-                        .tracking(0.05)
-
-                    Toggle(isOn: $sashStore.launchAtLogin) {
-                        Text("Launch at Login")
-                            .font(.system(size: 13))
-                            .foregroundColor(Theme.Colors.textPrimary)
-                    }
-                    .toggleStyle(.switch)
-                    .controlSize(.small)
-                    .padding(12)
-                    .background(Theme.Colors.surface)
-                    .cornerRadius(8)
-                }
-
-                // About
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("ABOUT")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundColor(Theme.Colors.textSecondary)
-                        .tracking(0.05)
-
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("Sash")
-                            .font(.system(size: 13, weight: .medium))
-                            .foregroundColor(Theme.Colors.textPrimary)
-                        Text("Window snapping utility for macOS")
-                            .font(.system(size: 11))
-                            .foregroundColor(Theme.Colors.textSecondary)
-                    }
-                    .padding(12)
-                    .background(Theme.Colors.surface)
-                    .cornerRadius(8)
-                }
+            VStack(spacing: Theme.Spacing.md) {
+                startupSection
+                subscriptionSection
+                aboutSection
             }
-            .padding(12)
+            .padding(Theme.Spacing.md)
         }
     }
-}
 
-// MARK: - SnapResult Extension
+    private var startupSection: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
+            Text("STARTUP")
+                .font(Theme.Typography.sectionHeader)
+                .foregroundColor(.secondary)
+                .tracking(0.08)
 
-extension SnapResult {
-    var position: SnapPosition? {
-        if case .success(let pos) = self {
-            return pos
+            Toggle(isOn: $sashStore.launchAtLogin) {
+                Text("Launch at Login")
+                    .font(Theme.Typography.body)
+                    .foregroundColor(.primary)
+            }
+            .toggleStyle(.switch)
+            .controlSize(.small)
+            .liquidGlassCard()
         }
-        return nil
+    }
+
+    private var subscriptionSection: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
+            Text("SUBSCRIPTION")
+                .font(Theme.Typography.sectionHeader)
+                .foregroundColor(.secondary)
+                .tracking(0.08)
+
+            VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
+                HStack(spacing: Theme.Spacing.sm) {
+                    Image(systemName: SubscriptionManager.shared.hasActiveSubscription ? "checkmark.seal.fill" : "seal")
+                        .font(.system(size: 16))
+                        .foregroundColor(SubscriptionManager.shared.hasActiveSubscription ? Theme.Colors.success : .secondary)
+                    Text(SubscriptionManager.shared.currentTier.displayName)
+                        .font(Theme.Typography.body)
+                        .foregroundColor(.primary)
+                }
+
+                if SubscriptionManager.shared.hasActiveSubscription {
+                    HStack(spacing: Theme.Spacing.xs) {
+                        Circle()
+                            .fill(Theme.Colors.success)
+                            .frame(width: 6, height: 6)
+                        Text("Active")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(Theme.Colors.success)
+                    }
+                } else {
+                    upgradeButton
+                }
+            }
+            .padding(Theme.Spacing.md)
+            .liquidGlassCard()
+        }
+    }
+
+    private var upgradeButton: some View {
+        Button(action: {}) {
+            Text("Upgrade to Pro")
+                .font(Theme.Typography.caption)
+                .foregroundColor(.white)
+                .padding(.horizontal, Theme.Spacing.md)
+                .padding(.vertical, Theme.Spacing.xs)
+                .background(Theme.Colors.accentPrimary)
+                .cornerRadius(Theme.CornerRadius.small)
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var aboutSection: some View {
+        VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
+            Text("ABOUT")
+                .font(Theme.Typography.sectionHeader)
+                .foregroundColor(.secondary)
+                .tracking(0.08)
+
+            VStack(alignment: .leading, spacing: Theme.Spacing.sm) {
+                HStack(spacing: Theme.Spacing.md) {
+                    Image(systemName: "rectangle.split.2x1.fill")
+                        .font(.system(size: 24))
+                        .frame(width: 32, height: 32)
+                        .glassIcon()
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Sash")
+                            .font(Theme.Typography.body)
+                            .foregroundColor(.primary)
+                        Text("Version 1.0.0")
+                            .font(Theme.Typography.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
+            }
+            .padding(Theme.Spacing.md)
+            .liquidGlassCard()
+        }
     }
 }

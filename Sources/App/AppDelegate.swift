@@ -11,7 +11,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         sashStore = SashStore()
 
-        // Initialize SashState for shortcuts
         SashState.shared.configure(store: sashStore)
 
         _ = CollaborationService.shared
@@ -32,8 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // MARK: - Status Item
-
     private func setupStatusItem() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 
@@ -44,8 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             button.target = self
         }
     }
-
-    // MARK: - Popover
 
     private func setupPopover() {
         popover = NSPopover()
@@ -68,8 +63,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // MARK: - Shortcut Monitor
-
     private func setupShortcutMonitor() {
         shortcutMonitor = ShortcutMonitor()
 
@@ -80,8 +73,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         shortcutMonitor.start()
     }
 
-    // MARK: - Event Monitor (for clicking outside to close popover)
-
     private func setupEventMonitor() {
         eventMonitor = NSEvent.addGlobalMonitorForEvents(matching: [.leftMouseDown, .rightMouseDown]) { [weak self] _ in
             if self?.popover.isShown == true {
@@ -90,12 +81,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    // MARK: - Snap Action
-
     private func performSnap(position: SnapPosition) {
         let windowManager = WindowManager.shared
 
-        // Check accessibility permission first
         guard windowManager.isAccessibilityEnabled() else {
             sashStore.showAccessibilityAlert = true
             if !popover.isShown {
@@ -108,7 +96,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         sashStore.lastSnapResult = result
 
         if !popover.isShown {
-            // Show brief visual feedback
             togglePopover()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [weak self] in
                 if self?.popover.isShown == true {
@@ -116,19 +103,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 }
             }
         } else {
-            // Refresh to show updated status
             sashStore.refreshFocusedWindow()
         }
 
-        // Show overlay
         showSnapOverlay(for: position)
     }
-
-    // MARK: - Snap Overlay
 
     private var overlayWindow: NSWindow?
 
     private func showSnapOverlay(for position: SnapPosition) {
+        // Respect Reduce Motion accessibility setting
+        if NSWorkspace.shared.accessibilityDisplayShouldReduceMotion {
+            return
+        }
+
         overlayWindow?.orderOut(nil)
 
         guard let screen = NSScreen.main else { return }
@@ -146,11 +134,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.level = .floating
         window.ignoresMouseEvents = true
 
-        // Create a border view
         let borderView = SnapBorderView(frame: NSRect(origin: .zero, size: frame.size))
-        borderView.borderColor = NSColor(Theme.Colors.accent)
+        borderView.borderColor = NSColor.controlAccentColor
         borderView.borderWidth = 2
-        borderView.fillColor = NSColor(Theme.Colors.accent).withAlphaComponent(0.1)
+        borderView.fillColor = NSColor.controlAccentColor.withAlphaComponent(0.1)
         window.contentView = borderView
 
         overlayWindow = window
@@ -214,134 +201,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 height: centerHeight
             )
         }
-    }
-}
-
-// MARK: - SnapBorderView
-
-class SnapBorderView: NSView {
-    var borderColor: NSColor = .blue
-    var borderWidth: CGFloat = 2
-    var fillColor: NSColor = .clear
-
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        fillColor.setFill()
-        dirtyRect.fill()
-
-        borderColor.setStroke()
-        let path = NSBezierPath(rect: bounds.insetBy(dx: borderWidth / 2, dy: borderWidth / 2))
-        path.lineWidth = borderWidth
-        path.stroke()
-    }
-}
-
-// MARK: - SashStore
-
-class SashStore: ObservableObject {
-    @Published var focusedAppName: String = "No focused app"
-    @Published var focusedWindowTitle: String = ""
-    @Published var lastSnapPosition: SnapPosition?
-    @Published var lastSnapResult: SnapResult = .success(nil)
-    @Published var showAccessibilityAlert: Bool = false
-    @Published var launchAtLogin: Bool = false
-    @Published var snapPresets: [SnapPreset] = []
-    @Published var monitors: [MonitorInfo] = []
-
-    private let windowManager = WindowManager.shared
-    private let presetsKey = "sash_presets"
-
-    init() {
-        loadPresets()
-        refreshMonitors()
-    }
-
-    func refreshFocusedWindow() {
-        if let app = NSWorkspace.shared.frontmostApplication {
-            focusedAppName = app.localizedName ?? "Unknown"
-        } else {
-            focusedAppName = "No focused app"
-        }
-    }
-
-    func refreshMonitors() {
-        monitors = MonitorManager.shared.getMonitors()
-    }
-
-    func addPreset(_ preset: SnapPreset) {
-        snapPresets.append(preset)
-        savePresets()
-    }
-
-    func deletePreset(_ id: UUID) {
-        snapPresets.removeAll { $0.id == id }
-        savePresets()
-    }
-
-    private func savePresets() {
-        // Simplified - just use array directly
-    }
-
-    private func loadPresets() {
-        // Simplified - presets managed in-memory
-        snapPresets = []
-    }
-}
-
-// MARK: - SnapResult
-
-enum SnapResult {
-    case success(SnapPosition?)
-    case noFocusedWindow
-    case cannotResize
-    case accessibilityNotGranted
-}
-
-// MARK: - Window Arrangement Preset
-
-struct SnapPreset: Identifiable, Codable {
-    let id: UUID
-    var name: String
-    var positions: [PresetPosition]
-
-    struct PresetPosition: Codable {
-        var bundleIdentifier: String
-        var snapPosition: String
-    }
-
-    init(id: UUID = UUID(), name: String, positions: [PresetPosition] = []) {
-        self.id = id
-        self.name = name
-        self.positions = positions
-    }
-}
-
-// MARK: - SashState
-
-@MainActor
-final class SashState {
-    static let shared = SashState()
-
-    var store: SashStore?
-    var presets: [SnapPreset] {
-        get { store?.snapPresets ?? [] }
-        set {
-            store?.snapPresets = newValue
-        }
-    }
-
-    private init() {}
-
-    func configure(store: SashStore) {
-        self.store = store
     }
 }
