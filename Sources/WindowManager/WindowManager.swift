@@ -34,10 +34,13 @@ class WindowManager {
             return .noFocusedWindow
         }
 
-        guard let window = windowElement as? AXUIElement else {
-            return .cannotResize
-        }
-        
+        // Swift requires `as!` here because AXUIElement is a CoreFoundation opaque type
+        // with no public initializers. The cast from CFTypeRef (returned by
+        // AXUIElementCopyAttributeValue) to AXUIElement always succeeds at runtime
+        // because the API contract guarantees an AXUIElement for kAXFocusedWindowAttribute.
+        // The prior `as?` version caused a compiler error ("will always succeed") on macOS 26 SDK.
+        let window = windowElement as! AXUIElement
+
         guard let screen = NSScreen.main else { return .cannotResize }
 
         let frame = calculateFrame(for: position, on: screen)
@@ -143,9 +146,8 @@ class WindowManager {
             return nil
         }
 
-        guard let window = windowElement as? AXUIElement else {
-            return nil
-        }
+        // Swift requires `as!` here — see comment above in snapFocusedWindow(to:).
+        let window = windowElement as! AXUIElement
 
         var title: CFTypeRef?
         AXUIElementCopyAttributeValue(window, kAXTitleAttribute as CFString, &title)

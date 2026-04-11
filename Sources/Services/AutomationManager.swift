@@ -26,19 +26,19 @@ struct SashMenuBarView: View {
 
             // Quick actions
             MenuBarActionButton(icon: "arrow.left.square", title: "Snap Left", shortcut: "⌘⌥←") {
-                WindowManager.shared.snapFocusedWindow(to: .leftHalf)
+                _ = WindowManager.shared.snapFocusedWindow(to: .leftHalf)
             }
 
             MenuBarActionButton(icon: "arrow.right.square", title: "Snap Right", shortcut: "⌘⌥→") {
-                WindowManager.shared.snapFocusedWindow(to: .rightHalf)
+                _ = WindowManager.shared.snapFocusedWindow(to: .rightHalf)
             }
 
             MenuBarActionButton(icon: "arrow.up.square", title: "Snap Top", shortcut: "⌘⌥↑") {
-                WindowManager.shared.snapFocusedWindow(to: .topHalf)
+                _ = WindowManager.shared.snapFocusedWindow(to: .topHalf)
             }
 
             MenuBarActionButton(icon: "arrow.down.square", title: "Snap Bottom", shortcut: "⌘⌥↓") {
-                WindowManager.shared.snapFocusedWindow(to: .bottomHalf)
+                _ = WindowManager.shared.snapFocusedWindow(to: .bottomHalf)
             }
 
             Divider()
